@@ -1,0 +1,2 @@
+Paddocks/dots and boxes game.
+Fill in the lines between squares to get a point. You don't need all the lines around a box to have the same colour to win it.

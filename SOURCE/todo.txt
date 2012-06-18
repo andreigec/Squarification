@@ -1,0 +1,7 @@
+hover outline
+no black square middle
+player colour chooser
+if one disabled box in the middle of all others, hide/show disabled some way?
+
+changes:
+*Added simple rules page
