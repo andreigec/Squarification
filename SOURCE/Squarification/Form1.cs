@@ -22,9 +22,9 @@ namespace Squarification
 		private const double AppVersion = 0.2;
 		private const String HelpString = "";
 
-		private const String UpdatePath = "http://www.andreigec.net/games/squarification/squarification.zip";
-		private const String VersionPath = "http://www.andreigec.net/games/squarification/version.txt";
-		private const String ChangelogPath = "http://www.andreigec.net/games/squarification/changelog.txt";
+        private const String UpdatePath = "https://github.com/EvilSeven/Squarification/zipball/master";
+        private const String VersionPath = "https://raw.github.com/EvilSeven/Squarification/master/INFO/version.txt";
+        private const String ChangelogPath = "https://raw.github.com/EvilSeven/Squarification/master/INFO/changelog.txt";
 
 		private readonly String OtherText =
 			@"©" + DateTime.Now.Year +
