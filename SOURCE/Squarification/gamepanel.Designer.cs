@@ -1,4 +1,5 @@
-﻿using ANDREICSLIB;
+﻿using System.Windows.Forms;
+using ANDREICSLIB;
 
 namespace Squarification
 {
@@ -30,15 +31,15 @@ namespace Squarification
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.gameboardresize = new ANDREICSLIB.PanelUpdates();
+			this.gameboardresize = new ANDREICSLIB.PanelReplacement();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.newplayercolours = new System.Windows.Forms.Button();
-			this.playerscoretable = new ANDREICSLIB.ListViewUpdate();
+			this.playerscoretable = new ListView();
 			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.label1 = new System.Windows.Forms.Label();
 			this.currentplayercolour = new System.Windows.Forms.Panel();
-			this.gamep = new ANDREICSLIB.PanelUpdates();
+			this.gamep = new ANDREICSLIB.PanelReplacement();
 			this.gameboardresize.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
@@ -147,9 +148,9 @@ namespace Squarification
 
 		#endregion
 
-		public PanelUpdates gamep;
-		public PanelUpdates gameboardresize;
-		public ListViewUpdate  playerscoretable;
+		public PanelReplacement gamep;
+		public PanelReplacement gameboardresize;
+		public ListView  playerscoretable;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.Label label1;
 		public System.Windows.Forms.Panel currentplayercolour;

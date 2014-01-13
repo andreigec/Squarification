@@ -18,7 +18,7 @@ namespace Squarification
 	{
 		//public Color c;
 		//public string ident;
-		public PanelUpdates refpanel;
+		public PanelReplacement refpanel;
 		public List<box> parents = new List<box>();
 		public bool isSet;
 		public bool isAreaUsedInGame;
@@ -44,7 +44,7 @@ namespace Squarification
 		//can link to this from the tabpage.tag
 		public int width;
 		public int height;
-		public ListUpdates<player> players = new ListUpdates<player>();
+        public List<player> players = new List<player>();
 		public box[][] boxes;
 		public bool completeGame = false;
 		//list of all lines for ai later
@@ -184,7 +184,7 @@ namespace Squarification
 			}
 		}
 
-		private bool containsLoop(Color c, ListUpdates<player> pl)
+        private bool containsLoop(Color c, List<player> pl)
 		{
 			foreach (var v in pl)
 			{

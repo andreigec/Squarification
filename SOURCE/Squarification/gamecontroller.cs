@@ -117,7 +117,7 @@ namespace Squarification
 
 		static void P_MouseClick(object sender, MouseEventArgs e)
 		{
-			var p = sender as PanelUpdates;
+			var p = sender as PanelReplacement;
 			if (p == null || p.Tag == null)
 				return;
 
@@ -141,9 +141,9 @@ namespace Squarification
 			return a.refpanel.Parent.Parent.Parent as gamepanel;
 		}
 
-		private static void addSquareArea(area a, PanelUpdates p)
+		private static void addSquareArea(area a, PanelReplacement p)
 		{
-			var P = new PanelUpdates();
+			var P = new PanelReplacement();
 			P.Tag = a;
 			if (a.isAreaUsedInGame)
 			{
@@ -163,9 +163,9 @@ namespace Squarification
 			p.addControl(P, true);
 		}
 
-		private static void addLine(area a, PanelUpdates p, int count, bool horiz, bool last)
+		private static void addLine(area a, PanelReplacement p, int count, bool horiz, bool last)
 		{
-			var P = new PanelUpdates();
+			var P = new PanelReplacement();
 			P.Tag = a;
 
 			if (a.isAreaUsedInGame)
@@ -198,9 +198,9 @@ namespace Squarification
 			a.parents[0].parent.lines.Add(a);
 		}
 
-		private static PanelUpdates addSquare(PanelUpdates p, bool last)
+		private static PanelReplacement addSquare(PanelReplacement p, bool last)
 		{
-			var P = new PanelUpdates();
+			var P = new PanelReplacement();
 			P.Width = horizh;
 			P.Height = horizh;
 			P.BackColor = inbetweensquare;
@@ -210,12 +210,12 @@ namespace Squarification
 
 		public static void createGamePanel(gamepanel gp)
 		{
-			PanelUpdates p = gp.gamep;
+			PanelReplacement p = gp.gamep;
 			game g = game.games[game.games.Count - 1];
 			gp.Name = game.games.Count.ToString();
 
 			//store these so we can hide solo squares surrounded by hidden areas
-			var blacksquares = new List<PanelUpdates>();
+			var blacksquares = new List<PanelReplacement>();
 			p.Controls.Clear();
 			int width = g.width;
 			int height = g.height;
@@ -258,9 +258,9 @@ namespace Squarification
 				}
 			}
 
-			PanelUpdates.fitPanel(p, p,40,0);
+			PanelReplacement.fitPanel(p, p,40,0);
 			gp.panel1.Location=new Point(0,gp.gamep.Location.Y + gp.gamep.Height + 5);
-			PanelUpdates.fitPanel(gp.gameboardresize, gp.gameboardresize);
+			PanelReplacement.fitPanel(gp.gameboardresize, gp.gameboardresize);
 		}
 
 		public static void endGame(game g,gamepanel gp)

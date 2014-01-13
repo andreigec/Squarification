@@ -1,5 +1,0 @@
-Version 0.2
-Update to host off GITHub
-
-Version 0.1
-Initial Release

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 using ANDREICSLIB;
+using Squarification.ServiceReference1;
 
 namespace Squarification
 {
@@ -19,12 +20,8 @@ namespace Squarification
 		#region licensing
 
 		private const string AppTitle = "Squarification";
-		private const double AppVersion = 0.2;
+		private const double AppVersion = 0.3;
 		private const String HelpString = "";
-
-        private const String UpdatePath = "https://github.com/EvilSeven/Squarification/zipball/master";
-        private const String VersionPath = "https://raw.github.com/EvilSeven/Squarification/master/INFO/version.txt";
-        private const String ChangelogPath = "https://raw.github.com/EvilSeven/Squarification/master/INFO/changelog.txt";
 
 		private readonly String OtherText =
 			@"©" + DateTime.Now.Year +
@@ -73,8 +70,36 @@ Zip Assets © SharpZipLib (http://www.sharpdevelop.net/OpenSource/SharpZipLib/)
 		{
 			initGameCombo();
 			updateCheck();
-			Licensing.CreateLicense(this, HelpString, AppTitle, AppVersion, OtherText, VersionPath, UpdatePath,ChangelogPath, menuStrip1);
+            Licensing.CreateLicense(this, menuStrip1, new Licensing.SolutionDetails(GetDetails, HelpString, AppTitle, AppVersion, OtherText));
 		}
+
+        public Licensing.DownloadedSolutionDetails GetDetails()
+        {
+            try
+            {
+                var sr = new ServicesClient();
+                var ti = sr.GetTitleInfo(AppTitle);
+                if (ti == null)
+                    return null;
+                return ToDownloadedSolutionDetails(ti);
+
+            }
+            catch (Exception)
+            {
+            }
+            return null;
+        }
+
+        public static Licensing.DownloadedSolutionDetails ToDownloadedSolutionDetails(TitleInfoServiceModel tism)
+        {
+            return new Licensing.DownloadedSolutionDetails()
+            {
+                ZipFileLocation = tism.LatestTitleDownloadPath,
+                ChangeLog = tism.LatestTitleChangelog,
+                Version = tism.LatestTitleVersion
+            };
+        }
+
 
 		private void initGameCombo()
 		{
@@ -97,12 +122,12 @@ Zip Assets © SharpZipLib (http://www.sharpdevelop.net/OpenSource/SharpZipLib/)
 
 		private void standardwidthtext_KeyPress(object sender, KeyPressEventArgs e)
 		{
-		        e.Handled = TextboxUpdates.HandleInput(TextboxUpdates.InputType.Create(false,true,false,false), e.KeyChar,ref standardwidthtext);
+		        e.Handled = TextboxExtras.HandleInput(TextboxExtras.InputType.Create(false,true,false,false), e.KeyChar);
 		}
 
 	    private void standardheighttext_KeyPress(object sender, KeyPressEventArgs e)
 		{
-            e.Handled = TextboxUpdates.HandleInput(TextboxUpdates.InputType.Create(false, true, false, false), e.KeyChar, ref standardheighttext);
+            e.Handled = TextboxExtras.HandleInput(TextboxExtras.InputType.Create(false, true, false, false), e.KeyChar);
 		}
 
 		private void standardradio_CheckedChanged(object sender, EventArgs e)
@@ -131,7 +156,7 @@ Zip Assets © SharpZipLib (http://www.sharpdevelop.net/OpenSource/SharpZipLib/)
 
 		private void playerstextbox_KeyPress(object sender, KeyPressEventArgs e)
 		{
-            e.Handled = TextboxUpdates.HandleInput(TextboxUpdates.InputType.Create(false, true, false, false), e.KeyChar, ref playerstextbox);
+            e.Handled = TextboxExtras.HandleInput(TextboxExtras.InputType.Create(false, true, false, false), e.KeyChar);
 		}
 
 		private void closeToolStripMenuItem_Click(object sender, EventArgs e)
